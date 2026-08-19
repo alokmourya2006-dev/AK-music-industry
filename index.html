@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AK Music</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.youtube.com/iframe_api"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <h2>🎵 AK Music</h2>
+            
+            <ul class="nav-menu">
+                <li class="active"><i class="fa-solid fa-house"></i> <span>Home</span></li>
+                <li><i class="fa-solid fa-compass"></i> <span>Explore</span></li>
+                <li><i class="fa-solid fa-book-open"></i> <span>Library</span></li>
+                <li><i class="fa-solid fa-heart"></i> <span>Favorites</span></li>
+            </ul>
+
+            <!-- Theme Switcher -->
+            <div class="theme-box">
+                <label><i class="fa-solid fa-palette"></i> Theme:</label>
+                <select id="themeSelect">
+                    <option value="red">AK Red</option>
+                    <option value="cyan">Neon Cyan</option>
+                    <option value="purple">Purple Night</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Main Section -->
+        <div class="main">
+            <!-- Search & Top Header -->
+            <div class="top-header">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search songs, artists, albums...">
+                    <button id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+                </div>
+            </div>
+
+            <!-- Mood & Genre Filters -->
+            <div class="genre-chips">
+                <button class="chip active" data-genre="Trending">🔥 All</button>
+                <button class="chip" data-genre="Lo-Fi Hindi Songs">☕ Lo-Fi</button>
+                <button class="chip" data-genre="Romantic Hindi Songs">❤️ Romantic</button>
+                <button class="chip" data-genre="Bollywood Party Songs">🎉 Party</button>
+                <button class="chip" data-genre="Chill Vibes Music">🌿 Chill</button>
+                <button class="chip" data-genre="Sad Hindi Songs">💔 Sad</button>
+                <button class="chip" data-genre="Gym Workout Songs">🏋️ Workout</button>
+            </div>
+
+            <div id="results" class="results-grid"></div>
+        </div>
+
+        <!-- Custom Bottom Player Bar -->
+        <div class="player">
+            <div id="ytPlayerContainer" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none;">
+                <div id="ytPlayer"></div>
+            </div>
+
+            <!-- Left: Song Info -->
+            <div class="song-info">
+                <img id="playerImg" src="https://via.placeholder.com/50" alt="Cover">
+                <div>
+                    <h4 id="songTitle">No song playing</h4>
+                    <p id="songArtist">-</p>
+                </div>
+            </div>
+
+            <!-- Center: Player Controls & Progress Slider -->
+            <div class="player-center">
+                <div class="control-btns">
+                    <button id="prevBtn"><i class="fa-solid fa-backward-step"></i></button>
+                    <button id="playPauseBtn"><i class="fa-solid fa-play"></i></button>
+                    <button id="nextBtn"><i class="fa-solid fa-forward-step"></i></button>
+                </div>
+                <div class="progress-container">
+                    <span id="currentTime">0:00</span>
+                    <input type="range" id="progressBar" value="0" min="0" max="100">
+                    <span id="totalTime">0:00</span>
+                </div>
+            </div>
+
+            <!-- Right: Share & Volume -->
+            <div class="player-right">
+                <button id="shareCurrentBtn" title="Share Playing Song"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="volume-container">
+                    <i class="fa-solid fa-volume-high" id="volIcon"></i>
+                    <input type="range" id="volumeBar" min="0" max="100" value="80">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
