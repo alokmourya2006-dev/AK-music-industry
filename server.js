@@ -7,13 +7,21 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
-app.use(express.static('public'));
 
+// Serve static files
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname));
+
+// Root Route Fallback
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'), (err) => {
+        if (err) {
+            res.sendFile(path.join(__dirname, 'index.html'));
+        }
+    });
 });
 
-// Search YouTube for songs
+// Search YouTube API
 app.get('/api/search', async (req, res) => {
     try {
         const query = req.query.q;
