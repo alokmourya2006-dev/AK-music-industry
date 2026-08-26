@@ -1,13 +1,17 @@
 const express = require('express');
 const cors = require('cors');
 const ytSearch = require('yt-search');
-const ytsearch = require('yt-search');
+const path = require('path');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.static('public'));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Search YouTube for songs
 app.get('/api/search', async (req, res) => {
@@ -29,7 +33,6 @@ app.get('/api/search', async (req, res) => {
     }
 });
 
-
 app.listen(PORT, () => {
-    console.log(`App running at: http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
